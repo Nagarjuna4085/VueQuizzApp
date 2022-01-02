@@ -1,28 +1,54 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+<P>Marhs Quiz App</P>
+
+<Quizapp @onBack="clearOperator" v-if="operator" :operate="operator" />
+ <OperatorSelector v-if="!operator" @operatorSelected="operatorSelected" />
   </div>
+
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import OperatorSelector  from './components/OperatorSelector.vue';
+import Quizapp  from './components/Quizapp.vue';
 export default {
   name: 'App',
+  data (){
+    return{
+      operator : null,
+      }
+
+    },
+    methods: {
+      operatorSelected : function(operator) {
+             this.operator=operator;
+
+        },
+        clearOperator : function(){
+          this.operator=null;
+
+          }
+
+    },
   components: {
-    HelloWorld
+    OperatorSelector,Quizapp
+    
+    
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin: 30;
+  padding-left: 30px;
+
 }
+button {
+
+margin-right: 20px;
+background-color:#08BA9E;
+
+  }
 </style>
